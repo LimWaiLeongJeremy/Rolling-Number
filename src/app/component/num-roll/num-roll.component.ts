@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validator, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-num-roll',
@@ -6,25 +8,56 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './num-roll.component.css'
 })
 export class NumRollComponent implements OnInit {
-  setValue: number = 0
-  totalValue: number = this.setValue
+
+  constructor(private formBuilder: FormBuilder) {}
+  actualNumForm!: FormGroup;
+  totalValue: number = 0
+  projectCount: number = 0;
+  projectCountStop: any 
+  inputValue: number = 0 
+
   
   ngOnInit(): void {
+    this.actualNumForm = this.formBuilder.group({
+      actualNumInput: new FormControl (null, [Validators.min(0)]),    
+    });
     const storedNumbersString = localStorage.getItem('totalValue');
     console.log("value: " + storedNumbersString)
     if (storedNumbersString !== null) {
       const storedNumber = JSON.parse(storedNumbersString);
       this.totalValue = storedNumber;
     } else {
-      this.totalValue = this.setValue;
+      this.totalValue = 0;
     }
-  }
- 
 
-  handleButtonClick(buttonValue: number): void {
-    this.totalValue = this.totalValue + buttonValue;
-    const numbersString = JSON.stringify(this.totalValue);
-    localStorage.setItem('totalValue', numbersString);
-    console.log('Button clicked:', buttonValue);
+    this.projectCountRolling();
+
+    this.actualNumForm.get('actualNumInput')?.valueChanges.subscribe( val => {
+      if(val > 0 && val > this.totalValue){
+        this.totalValue = val;
+        this.projectCountRolling();
+
+      }
+    })
+  }
+
+  projectCountRolling(): void {
+    this.projectCountStop = setInterval(() =>{
+    
+      if (this.projectCount < this.totalValue) {
+        this.projectCount += 100;
+      } else {
+        clearInterval(this.projectCountStop);
+      }
+    }, 300)
+  }
+
+  onSubmit(){
+
+  }
+
+  clearInput() {
+    this.inputValue = 0;
+
   }
 }

@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { NumRollComponent } from './component/num-roll/num-roll.component';
 import { ResetComponent } from './component/reset/reset.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     ButtonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
