@@ -1,0 +1,37 @@
+<head>
+    <style>
+    body {
+      background-color: #00b140;
+
+      height: 100vh; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
+        text-align: center;
+    }
+    .button-container {
+      display: flex;
+      align-items: center; 
+    }
+    .button-container p-button {
+        margin-left: 10px; 
+    }
+  
+    </style>
+    </head>
+    <body>
+    
+      <div class="content">
+        <h1>{{ totalValue }}</h1>
+        <p>Sample Text.</p>
+      </div>
+  
+      <div class="button-container">
+        <p-button (click)="handleButtonClick(2500)" label="2500" severity="secondary"></p-button>
+        <p-button (click)="handleButtonClick(5000)" label="5000" severity="secondary"></p-button>
+      </div>
+  
+    </body>

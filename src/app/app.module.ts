@@ -4,13 +4,46 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { ButtonModule } from 'primeng/button';
+import { NumRollComponent } from './component/num-roll/num-roll.component';
+import { ResetComponent } from './component/reset/reset.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'home',
+    title: 'Rolling Number',
+    component: NumRollComponent
+  },
+  {
+    path: '',
+    title: 'Rolling Number',
+    component: NumRollComponent
+  },
+  {
+    path: 'reset',
+    title: 'Reset',
+    component: ResetComponent
+  },
+  {
+    path: '**',
+    redirectTo: "home",
+    pathMatch: 'full'
+  },
+  
+]
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumRollComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ButtonModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
