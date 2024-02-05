@@ -1,0 +1,29 @@
+body {
+    background-color: #00b140;
+
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .content {
+      text-align: center;
+  }
+  .button-container {
+    display: flex;
+    align-items: center; 
+  }
+  .button-container p-button {
+      margin-left: 10px; 
+  }
+  .rollingBtn {
+      position: absolute;
+      top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .rollingBtn p-button {
+       margin-right: 10px; /* Add margin-right to create space between the button and actualNum */
+  }
