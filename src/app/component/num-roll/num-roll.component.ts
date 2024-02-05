@@ -63,4 +63,5 @@ export class NumRollComponent implements OnInit {
     this.inputValue = 0;
 
   }
+  
 }

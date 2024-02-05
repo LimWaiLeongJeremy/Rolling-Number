@@ -1,56 +1,17 @@
 <head>
-    <style>
-    body {
-      background-color: #00b140;
-
-      height: 100vh; 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .content {
-        text-align: center;
-    }
-    .button-container {
-      display: flex;
-      align-items: center; 
-    }
-    .button-container p-button {
-        margin-left: 10px; 
-    }
-    .rollingBtn {
-        position: absolute;
-        top: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .rollingBtn p-button {
-         margin-right: 10px; /* Add margin-right to create space between the button and actualNum */
-    }
-  
-    </style>
-    </head>
-    <form [formGroup]="actualNumForm" (submit)="onSubmit()">
-        <body>
-            <div class="rollingBtn">
-                <!-- <p-button label="rolling" [severity]="rolling ? 'danger' : 'info'" (click)="rollingNumber()"></p-button> -->
-                <label for="actualNum">Actual Number: </label>
-                <input id="actualNum" type="number" formControlName="actualNumInput" onfocus="value =''">
-                <i>Actual number: {{ totalValue }}</i>
-            </div>
-        
+</head>
+<form [formGroup]="actualNumForm" (submit)="onSubmit()">
+    <body>
+        <div class="rollingBtn">
+            <label for="actualNum">Actual Number: </label>
+            <input id="actualNum" type="number" formControlName="actualNumInput" onfocus="value =''">
+            <i>Actual number: {{ totalValue }}</i>
+        </div>
+    
         <div class="content">
             <h1>{{ projectCount }}</h1>
             <p>Sample Text.</p>
-        </div>
-    
-        <div class="button-container">
-            <!-- <p-button (click)="handleButtonClick(2500)" label="2500" severity="secondary"></p-button>
-            <p-button (click)="handleButtonClick(5000)" label="5000" severity="secondary"></p-button> -->
-        </div>
-    
-        </body>
-    </form>
+        </div> 
+    </body>
+</form>
     
