@@ -21,6 +21,7 @@ export class NumRollComponent implements OnInit {
     this.actualNumForm = this.formBuilder.group({
       actualNumInput: new FormControl (null, [Validators.min(0)]),    
     });
+    
     const storedNumbersString = localStorage.getItem('totalValue');
     console.log("value: " + storedNumbersString)
     if (storedNumbersString !== null) {
@@ -29,12 +30,14 @@ export class NumRollComponent implements OnInit {
     } else {
       this.totalValue = 0;
     }
-
     this.projectCountRolling();
-
+    
     this.actualNumForm.get('actualNumInput')?.valueChanges.subscribe( val => {
       if(val > 0 && val > this.totalValue){
+        clearInterval(this.projectCountStop);
         this.totalValue = val;
+        const numbersString = JSON.stringify(this.totalValue);
+        localStorage.setItem('totalValue', numbersString);
         this.projectCountRolling();
 
       }
@@ -45,11 +48,11 @@ export class NumRollComponent implements OnInit {
     this.projectCountStop = setInterval(() =>{
     
       if (this.projectCount < this.totalValue) {
-        this.projectCount += 100;
+        this.projectCount += 70;
       } else {
         clearInterval(this.projectCountStop);
       }
-    }, 300)
+    }, 200)
   }
 
   onSubmit(){
